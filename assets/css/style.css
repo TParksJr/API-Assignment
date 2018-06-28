@@ -1,0 +1,27 @@
+body {
+    background-color: rgb(216, 243, 252);
+}
+
+.container {
+    margin: 10px;
+    padding: 10px;
+    background-color: lightblue;
+}
+
+#buttons button {
+    font-size: 150%;
+    align-content: center;
+    text-align: center;
+}
+
+#gifs img {
+    margin: 10px;
+    height: 300px;
+    width: 300px;
+}
+
+#searchBar {
+    font-size: 150%;
+    align-content: center;
+    text-align: center;
+}
