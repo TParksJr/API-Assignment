@@ -1,33 +1,54 @@
 $(function() {
     //declaring variables
-    var giphyAPIKey = "DPJ6mgUrj8JV2BoktzbF6voOqEpNjNys",
-        queryURL = "http://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=" + giphyAPIKey + "&limit=10",
+    var giphyAPIKey = "0iEGw7SxXaBUvPXVNuAimMJuX7LtFKYO",
+        queryURL = "",
         searchTerm = "",
         input = "",
         animals = ["cat", "dog", "bear", "horse", "skunk", "raccoon", "bird", "deer", "moose", "rabbit", "hamster", "turtle", "chicken", "pig", "goat", "sheep", "hedgehog", "gineapig"];
     
     //generating search buttons
-    for (i = 0; i < animals.length; i++) {
-        $("#buttons").append("<button class='animalButton'>" + animals[i] + "</button>").data("animal", animals[i]);
+    function makeButtons() {
+        $("#buttons").empty();
+        for (i = 0; i < animals.length; i++) {
+            var b = $("<button>");
+            b.addClass("animalButton");
+            b.attr("data-name", animals[i]);
+            b.text(animals[i]);
+            $("#buttons").append(b);
+        };
     };
+    makeButtons();
 
-    //function to add new buttons *** does not work - the added button immediately disapears ***
-    $("#submit").on("click", function() {
+    //function to add new buttons
+    $("#submit").on("click", function(event) {
+        event.preventDefault();
         input = $("#input").val().trim();
-        input.push(animals);
-        $("#buttons").append("<button class='animalButton'>" + $("#input").val().trim() + "</button>");
+        animals.push(input);
+        makeButtons();
     });
 
-    //function to get data from Giphy
-    $(".animalButton").on("click", function() {
-        searchTerm = "cat";
+    //function to get data from Giphy, changed to document to avoid issues with event bubbling
+    $(document).on("click", ".animalButton", function(event) {
+        event.preventDefault();
+        searchTerm = $(this).attr("data-name").split(" ").join("+");
+        queryURL = "http://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=" + giphyAPIKey  + "&limit=10";
         $.ajax({
             url: queryURL,
             method: "GET"
         }).then(function(response) {
             $("#gifs").empty();
-            for (i = 0; i < response.data.length; i++) {
-                $("#gifs").append("<img src='https://media.giphy.com/media/" + response.data[i].id + "/giphy.gif'>");
+            for (var i = 0; i < response.data.length; i++) {
+                var d = $("<div>");
+                var p = $("<p class='rating'>").text("Rating: " + response.data[i].rating);
+                var img = $("<img>");
+                img.addClass("gif")
+                img.attr("src", response.data[i].images.fixed_height_still.url);
+                img.attr("data-state", "still");
+                img.attr("data-position", i);
+                d.append(p);
+                d.append(img);
+                d.addClass("gifContainer")
+                $("#gifs").append(d);
             };
         }); 
     });
