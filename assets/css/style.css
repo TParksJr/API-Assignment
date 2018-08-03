@@ -16,9 +16,17 @@ h1 {
     background-color: lightblue;
 }
 #buttons button {
-    font-size: 150%;
     align-content: center;
     text-align: center;
+    padding: 5px 20px;
+    margin: 0 10px 10px 0;
+    font-size: 18px;
+    color: #fff;
+    cursor: pointer;
+    background: #659a98;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 5px 5px 3px #bbb;
 }
 #gifs img {
     margin: 10px;

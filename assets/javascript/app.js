@@ -6,6 +6,8 @@ $(function () {
         input = "",
         animals = ["cat", "dog", "bear", "horse", "skunk", "raccoon", "bird", "deer", "moose", "rabbit", "hamster", "turtle", "chicken", "pig", "goat", "sheep", "hedgehog", "gineapig"];
 
+    var data;
+
     //generating search buttons
     function makeButtons() {
         $("#buttons").empty();
@@ -27,6 +29,19 @@ $(function () {
         makeButtons();
     });
 
+    function gifToggle() {
+        var state = $(this).attr("data-state");
+        var position = parseInt($(this).attr("data-position"));
+
+        if (state === "still") {
+            $(this).attr("src", data.data[position].images.fixed_height.url);
+            $(this).attr("data-state", "animate");
+        } else {
+            $(this).attr("src", data.data[position].images.fixed_height_still.url);
+            $(this).attr("data-state", "still");
+        };
+    };
+
     //function to get data from Giphy, changed to document to avoid issues with event bubbling
     $(document).on("click", ".animalButton", function (event) {
         event.preventDefault();
@@ -36,6 +51,8 @@ $(function () {
             url: queryURL,
             method: "GET"
         }).then(function (response) {
+            data = response;
+            console.log(data);
             $("#gifs").empty();
             for (var i = 0; i < response.data.length; i++) {
                 var d = $("<div>");
@@ -50,24 +67,8 @@ $(function () {
                 d.addClass("gifContainer")
                 $("#gifs").append(d);
             };
-            function gifToggle() {
-                var state = $(this).attr("data-state");
-                var position = parseInt($(this).attr("data-position"));
-        
-                if (state === "still") {
-                    $(this).attr("src", response.data[position].images.fixed_height.url);
-                    $(this).attr("data-state", "animate");
-                } else {
-                    $(this).attr("src", response.data[position].images.fixed_height_still.url);
-                    $(this).attr("data-state", "still");
-                };
-            };
-            $(document).on("click", ".gif", gifToggle);
         });
     });
 
-    
-
-    
-
+    $(document).on("click", ".gif", gifToggle);
 });
