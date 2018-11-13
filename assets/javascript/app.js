@@ -4,7 +4,7 @@ $(function () {
         queryURL = "",
         searchTerm = "",
         input = "",
-        animals = ["cat", "dog", "bear", "horse", "skunk", "raccoon", "bird", "deer", "moose", "rabbit", "hamster", "turtle", "chicken", "pig", "goat", "sheep", "hedgehog", "gineapig"];
+        animals = ["cat", "dog", "hockey", "pizza"];
 
     var data;
 
@@ -52,7 +52,6 @@ $(function () {
             method: "GET"
         }).then(function (response) {
             data = response;
-            console.log(data);
             $("#gifs").empty();
             for (var i = 0; i < response.data.length; i++) {
                 var d = $("<div>");

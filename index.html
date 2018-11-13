@@ -1,34 +1,42 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>API Assignment</title>
-        <meta charset="UTF-8">
-        <meta name="description" content="Tyson's API Assignment">
-        <meta name="keywords" content="API,GIPHY,University,Toronto,Bootcamp">
-        <meta name="author" content="Tyson Parkin">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="Content-Language" content="en">
-        <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    </head>
-    <body>
-        <div class="container">
-            <h1>Giphy API Assignment</h1>
-            <p id="instructions">Click a button to get Gifs</p>
+<html lang="en">
+
+<head>
+    <title>Giphy Gif Search</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Tyson's API Assignment">
+    <meta name="keywords" content="API,GIPHY,University,Toronto,Bootcamp">
+    <meta name="author" content="Tyson Parkin">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Giphy Gif Search</h1>
+        <br>
+        <div id="instructions">
+            <p>Click a button to get Gifs of that animal</p>
+            <p>Click on a Gif to toggle the animation</p>
         </div>
-        <div class="container">
-            <div id="buttons"></div>
-            <form id="searchBar">
-                <label for="addAnimal">Add an animal!</label>
-                <br>
-                <input type="text" name="addAnimal" id="input">
-                <input type="submit" value="submit" id="submit">
-            </form>
-        </div>
-        <div class="container">
-            <div id="gifs"></div>
-        </div>
-    </body>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="assets/javascript/app.js"></script>
+    </div>
+    <div class="container">
+        <div id="buttons"></div>
+        <form id="searchBar">
+            <label for="addAnimal">Add a new search button!</label>
+            <br>
+            <input type="text" name="addAnimal" id="input">
+            <input type="submit" value="submit" id="submit">
+        </form>
+    </div>
+    <div class="container">
+        <div id="gifs"></div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+<script src="assets/javascript/app.js"></script>
+
 </html>
